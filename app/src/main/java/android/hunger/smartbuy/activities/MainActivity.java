@@ -3,6 +3,7 @@ package android.hunger.smartbuy.activities;
 import android.graphics.Typeface;
 import android.hunger.smartbuy.R;
 import android.hunger.smartbuy.adaptors.MainViewPageAdaptor;
+import android.hunger.smartbuy.fragments.HomeFragment;
 import android.hunger.smartbuy.utils.FontCache;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,9 +26,9 @@ import android.hunger.smartbuy.utils.CustomTypefaceSpan;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView mTextMessage;
-
     private ViewPager bannersViewPager;
     private MainViewPageAdaptor mainViewPageAdaptor;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
@@ -57,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mTextMessage = (TextView) findViewById(R.id.message);
         initUiElements();
+        HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("HomeFragment");
+        if (homeFragment == null) {
+            homeFragment = HomeFragment.newInstance();
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, homeFragment, "HomeFragment").commit();
 
         mainViewPageAdaptor = new MainViewPageAdaptor(this);
         bannersViewPager.setAdapter(mainViewPageAdaptor);
@@ -74,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        TextView search_text=(TextView) toolbar.findViewById(R.id.search_text);
-        search_text.setTypeface(FontCache.getTypeface(this,"fonts/Quicksand-Medium.ttf"));
+        TextView search_text = (TextView) toolbar.findViewById(R.id.search_text);
+        search_text.setTypeface(FontCache.getTypeface(this, "fonts/Quicksand-Medium.ttf"));
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

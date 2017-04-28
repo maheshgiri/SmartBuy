@@ -1,7 +1,7 @@
 package android.hunger.smartbuy.fragments;
 
 import android.hunger.smartbuy.R;
-import android.hunger.smartbuy.adaptors.HomeRecyclerAdaptor;
+import android.hunger.smartbuy.adaptors.HomeRecyclerAdaptorParent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +19,13 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerview_home;
     private LinearLayoutManager linearLayoutManager;
-    private HomeRecyclerAdaptor homeRecyclerAdaptor;
+    private HomeRecyclerAdaptorParent homeRecyclerAdaptorParent;
+
+    public static HomeFragment newInstance() {
+        HomeFragment homeFragment = new HomeFragment();
+        return homeFragment;
+    }
+
 
 
     @Nullable
@@ -32,6 +38,10 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerview_home=(RecyclerView) view.findViewById(R.id.recyclerview_home);
+        linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        recyclerview_home.setLayoutManager(linearLayoutManager);
+        homeRecyclerAdaptorParent=new HomeRecyclerAdaptorParent(getContext());
+        recyclerview_home.setAdapter(homeRecyclerAdaptorParent);
     }
 
     @Override

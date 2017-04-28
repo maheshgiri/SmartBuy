@@ -6,20 +6,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by hunger on 4/27/2017.
+ * Created by USER on 28-04-2017.
  */
 
-public class HomeCategoryViewHolder extends RecyclerView.ViewHolder {
+public class HomeViewHolderParent extends RecyclerView.ViewHolder {
     private RecyclerView recylerview_homecategory;
-    private GridLayoutManager gridLayoutManager;
 
 
-    public HomeCategoryViewHolder(View itemView) {
+    public HomeViewHolderParent(View itemView) {
         super(itemView);
         recylerview_homecategory = (RecyclerView) itemView.findViewById(R.id.recyclerview_homecategory);
-        gridLayoutManager=new GridLayoutManager(itemView.getContext(),4);
-        recylerview_homecategory.setLayoutManager(gridLayoutManager);
 
+    }
+
+
+    public RecyclerView getRecylerview_homecategory() {
+        return recylerview_homecategory;
     }
 
 

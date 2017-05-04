@@ -27,14 +27,16 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:overScrollMode="ifContentScrolls">
+                android:overScrollMode="ifContentScrolls"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/main.bannerpager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
-                    android:paddingTop="?attr/actionBarSize"
+                    android:layout_marginTop="?attr/actionBarSize"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
 
@@ -43,7 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/background_light"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin"
+                >
 
                 <TextView
                     android:id="@+id/search_text"
@@ -63,6 +67,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
@@ -84,7 +89,6 @@
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation"
-
         />
 
 </android.support.design.widget.CoordinatorLayout>

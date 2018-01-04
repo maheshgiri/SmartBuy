@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 
 import android.hunger.smartbuy.R;
+import android.hunger.smartbuy.data.DataService;
 import android.hunger.smartbuy.utils.FontCache;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by hunger on 12/20/2016.
@@ -19,7 +23,7 @@ import android.widget.RelativeLayout;
 
 
 public class MainViewPageAdaptor extends PagerAdapter {
-    private int[] listImages = {R.drawable.banner_second, R.drawable.banner_third, R.drawable.desktop_bunk};
+    //private int[] listImages = {R.drawable.banner_second, R.drawable.banner_third, R.drawable.desktop_bunk};
     private Context mContext;
 
     public MainViewPageAdaptor(Context context) {
@@ -28,7 +32,7 @@ public class MainViewPageAdaptor extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return listImages.length;
+        return 8;
     }
 
     @Override
@@ -50,9 +54,15 @@ public class MainViewPageAdaptor extends PagerAdapter {
 
 
         itemView = LayoutInflater.from(mContext).inflate(R.layout.banner_layout, container, false);
+        TextView textview_title,textview_description;
+        textview_description=(TextView) itemView.findViewById(R.id.textview_description);
+        textview_title=(TextView) itemView.findViewById(R.id.textview_title);
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.banner_image);
-        imageView.setImageResource(listImages[position]);
+
+        Picasso.with(mContext).load(DataService.getAllOffers().getAllOffersList().get(position).getImageUrls().get(0).getUrl()).into(imageView);
+        textview_title.setText(DataService.getAllOffers().getAllOffersList().get(position).getTitle());
+        textview_description.setText(DataService.getAllOffers().getAllOffersList().get(position).getDescription());
         container.addView(itemView);
 
         return itemView;

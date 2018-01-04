@@ -2,10 +2,10 @@ package android.hunger.smartbuy.services;
 
 import android.hunger.smartbuy.BuildConfig;
 
-import com.prado.rps.BuildConfig;
+
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -15,7 +15,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 */
 
 /**
- * Created by hemis on 9/2/2016.
+ * Created by mahesh on 9/2/2016.
  */
 public class ApiManager {
     private static ApiService apiService;
@@ -47,8 +47,9 @@ public class ApiManager {
                     });*/
                     retrofit = new Retrofit.Builder()
                             .baseUrl(BuildConfig.REST_BASE_URL)
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .addConverterFactory(PrimitiveConvertorFactory.create())
+                           .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+
+                        //    .addConverterFactory(PrimitiveConvertorFactory.create())
                             .addConverterFactory(JacksonConverterFactory.create())
                             .client(getOkHttpClient())
                             .build();
@@ -77,11 +78,11 @@ public class ApiManager {
     private static OkHttpClient getOkHttpClient() {
 
         OkHttpClient.Builder okClientBuilder = new OkHttpClient.Builder();
-        okClientBuilder.addInterceptor(new TimberLoggingInterceptor());
+     /*   okClientBuilder.addInterceptor(new TimberLoggingInterceptor());
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         okClientBuilder.addInterceptor(httpLoggingInterceptor);
-
+*/
         return okClientBuilder.build();
 
     }

@@ -7,8 +7,33 @@
     <ImageView
         android:id="@+id/banner_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/banner_second"
-        android:scaleType="fitXY"
-        />
+        android:layout_height="170dp"
+        android:alpha="0.8"
+        android:scaleType="fitCenter"
+        android:src="@drawable/banner_second" />
+
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="Title"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+
+        android:layout_below="@+id/textview_title"
+        android:fontFamily="serif-monospace"
+        android:text="Title"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
 </LinearLayout>

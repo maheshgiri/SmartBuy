@@ -6,8 +6,8 @@ package android.hunger.smartbuy.contants;
 
 public class Constants {
 
-   public static String TRAKING_ID_VALUE="maheshgir";
-   public static String TOKEN_VALUE="9bd856886a4a4b91b60b9912c5169333";
+   public static String TRAKING_ID_VALUE="maheshg89";
+   public static String TOKEN_VALUE="000ed10d2ea64a2e86a2f62ad2861a10";
    public static String TRAKING_ID_KEY="Fk-Affiliate-Id";
    public static String TOKEN_KEY="Fk-Affiliate-Token";
 
